@@ -39,6 +39,7 @@ export default async function DashboardPage() {
           value={summary?.atRiskVendors ?? 0}
           icon={ShieldAlert}
           tone="danger"
+          elevated
         />
         <KpiCard
           label="Documents expiring soon"
