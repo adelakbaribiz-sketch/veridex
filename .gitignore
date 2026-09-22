@@ -1,0 +1,32 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# env
+.env
+.env.local
+.env.*.local
+
+# next.js
+web/.next/
+web/out/
+
+# nest / build output
+api/dist/
+api/*.tsbuildinfo
+
+# prisma
+api/prisma/*.db
+api/generated/
+
+# logs
+*.log
+npm-debug.log*
+
+# os
+.DS_Store
+Thumbs.db
+
+# editors
+.vscode/
+.idea/

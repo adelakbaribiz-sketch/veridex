@@ -1,0 +1,112 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserRole {
+  ADMIN
+  MANAGER
+  MEMBER
+  VIEWER
+}
+
+enum VendorStatus {
+  ACTIVE
+  AT_RISK
+  OFFBOARDED
+}
+
+enum DocumentType {
+  INSURANCE_CERT
+  SOC2_REPORT
+  ISO27001
+  CONTRACT
+  OTHER
+}
+
+enum DocumentStatus {
+  VALID
+  EXPIRING_SOON
+  EXPIRED
+}
+
+model Tenant {
+  id        String   @id @default(cuid())
+  name      String
+  slug      String   @unique
+  createdAt DateTime @default(now())
+
+  users     User[]
+  vendors   Vendor[]
+  auditLogs AuditLog[]
+}
+
+model User {
+  id           String   @id @default(cuid())
+  tenantId     String
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         UserRole @default(MEMBER)
+  createdAt    DateTime @default(now())
+
+  tenant    Tenant     @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  auditLogs AuditLog[]
+
+  @@index([tenantId])
+}
+
+model Vendor {
+  id           String       @id @default(cuid())
+  tenantId     String
+  name         String
+  category     String
+  contactEmail String
+  riskScore    Int          @default(0)
+  status       VendorStatus @default(ACTIVE)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @updatedAt
+
+  tenant    Tenant               @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  documents ComplianceDocument[]
+
+  @@index([tenantId])
+}
+
+model ComplianceDocument {
+  id        String         @id @default(cuid())
+  tenantId  String
+  vendorId  String
+  type      DocumentType
+  fileName  String
+  issuedAt  DateTime
+  expiresAt DateTime
+  status    DocumentStatus @default(VALID)
+  createdAt DateTime       @default(now())
+
+  vendor Vendor @relation(fields: [vendorId], references: [id], onDelete: Cascade)
+
+  @@index([tenantId])
+  @@index([vendorId])
+  @@index([expiresAt])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  tenantId   String
+  userId     String?
+  action     String
+  entityType String
+  entityId   String
+  metadata   Json?
+  createdAt  DateTime @default(now())
+
+  tenant Tenant @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  user   User?  @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([tenantId])
+  @@index([createdAt])
+}
