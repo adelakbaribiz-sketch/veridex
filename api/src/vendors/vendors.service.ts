@@ -60,6 +60,7 @@ export class VendorsService {
 
   async create(user: JwtPayload, dto: CreateVendorDto) {
     const vendor = await this.prisma.vendor.create({
+      // eslint-disable-next-line no-misused-spread -- dto is read as plain fields by Prisma, no prototype/methods needed
       data: { ...dto, tenantId: user.tenantId },
     });
     await this.audit(user, 'vendor.created', vendor.id);
