@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -26,7 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${sourceSerif.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-canvas text-ink-900">
-        <Providers>{children}</Providers>
+        {children}
       </body>
     </html>
   );
