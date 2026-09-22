@@ -100,6 +100,7 @@ saas-platform/
 | [docs/SECURITY.md](docs/SECURITY.md) | A real review: what was checked, found, and fixed |
 | [docs/ROADMAP.md](docs/ROADMAP.md) | What's next and why it wasn't built now |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | Architecture decisions made during this build, with reasoning |
+| [docs/UPGRADE-REPORT.md](docs/UPGRADE-REPORT.md) | Before/after of the post-launch quality pass (rate limiting, dialog accessibility, test coverage, UI depth) |
 | [docs/DEMO.md](docs/DEMO.md) | How to run it, demo credentials, what's real vs. seeded |
 | [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Docker Compose deployment, environment variables |
 | [docs/TESTING.md](docs/TESTING.md) | What was tested, how, and what wasn't |

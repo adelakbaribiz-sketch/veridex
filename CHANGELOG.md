@@ -3,6 +3,29 @@
 All notable changes to this project are documented here. Format loosely follows
 [Keep a Changelog](https://keepachangelog.com/).
 
+## [0.2.0] — Quality pass
+
+Full before/after in [docs/UPGRADE-REPORT.md](docs/UPGRADE-REPORT.md).
+
+### Added
+
+- Rate limiting (`@nestjs/throttler`): global 100/min, 5/min on `/auth/login` and
+  `/auth/register` specifically.
+- Focus trap, initial focus, and focus restore on the `Dialog` component.
+- `loading.tsx` skeleton screens for every authenticated route.
+- 4 new unit tests for `DashboardService` (16 total, up from 12).
+- Semantic depth: `KpiCard` `elevated` prop (applied to "Vendors at risk" only), tactile
+  primary-button styling with `prefers-reduced-motion` support.
+
+### Removed
+
+- `@tanstack/react-query` and its provider — installed but never actually used.
+
+### Fixed
+
+- A second, real `no-misused-spread` lint warning (class-validator DTO spread), suppressed with
+  an explanatory comment matching the existing pattern.
+
 ## [0.1.0] — Initial build
 
 ### Added

@@ -26,8 +26,6 @@ promise or a timeline — it's an honest list of what was deliberately left out 
 - **Token refresh & revocation.** Current JWTs are stateless with a 1-day expiry and no way to
   invalidate a token early (e.g., on logout-everywhere or a compromised device).
 - **SSO/SAML for enterprise tenants.**
-- **Rate limiting** on `/auth/login` and `/auth/register` (currently unprotected against
-  credential-stuffing / signup abuse).
 - **Row-level security or schema/DB-per-tenant** if a tenant ever needs stronger isolation
   guarantees than application-level `tenantId` filtering.
 - **Locking down `/api/docs`** (Swagger) behind auth or removing it from production builds.
