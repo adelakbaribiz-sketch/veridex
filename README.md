@@ -8,6 +8,12 @@
 > claimed certifications. See [docs/PROJECT_CONTEXT.md](docs/PROJECT_CONTEXT.md) for exactly what
 > is invented and why, and [docs/LIMITATIONS.md](docs/LIMITATIONS.md) for what is not built.
 
+![Veridex landing page](docs/screenshots/landing.png)
+
+*Public landing page, captured from the web app running locally. The authenticated dashboard and
+vendor registry need the NestJS API and PostgreSQL running (see Quick start), so they are not pictured
+yet.*
+
 ## The problem
 
 Procurement and ops teams track dozens of vendors, each with insurance certificates, SOC 2
